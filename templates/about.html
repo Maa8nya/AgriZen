@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriZen - Meet Our Team</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5C832F;
+            --primary-dark: #3A5A20;
+            --secondary: #FFC107;
+            --secondary-dark: #E6B000;
+            --accent: #8B4513;
+            --light: #FFFDE7;
+            --dark: #3E2723;
+            --highlight: #F5F5DC;
+            --text: #333333;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Roboto Slab', serif;
+            color: var(--primary-dark);
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+.logo-container {
+    position: relative;
+    z-index: 4;
+    margin-bottom: 20px;
+}
+
+.logo {
+    height: 100px;  
+    width: 200px;
+    border-radius: 50%;  
+    object-fit: cover;
+    border: 3px solid var(--secondary); 
+    box-shadow: 0 0 0 12px rgba(255, 193, 7, 0.3);
+    transition: all 0.4s ease;
+}
+
+.logo:hover {
+    transform: rotate(10deg) scale(1.1);
+    box-shadow: 0 0 0 16px rgba(255, 193, 7, 0.5);
+}
+
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header h1 span {
+            color: var(--secondary);
+        }
+
+        /* Navigation */
+        nav {
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        nav ul li a i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        nav ul li a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        /* About Team Section */
+        .about-team {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .about-team.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-team::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--secondary), transparent 70%);
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .about-team h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .about-team p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Team Info Grid */
+        .team-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            z-index: 1;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .team-member::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: all 0.4s ease;
+        }
+
+        .team-member:hover::after {
+            height: 10px;
+        }
+
+        .team-member h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .team-member h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .team-member ul {
+            list-style: none;
+        }
+
+        .team-member ul li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .team-member ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Feature Highlights */
+        .feature-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+            justify-content: center;
+        }
+
+        .feature-card {
+            flex: 1 1 200px;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        footer p {
+            position: relative;
+            z-index: 1;
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li a {
+                width: 80%;
+                justify-content: center;
+            }
+
+            .about-team {
+                padding: 30px;
+            }
+
+            .team-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .about-team {
+                padding: 20px;
+            }
+
+            .feature-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'en',
+                    includedLanguages: 'kn',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    autoDisplay: true
+                },
+                'google_translate_element'
+            );
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <header>
+        <div class="logo-container floating">
+            <img src="logo.jpg" alt="AgriZen Logo" class="logo">
+        </div>
+        <h1>Meet The <span>AgriZen</span> Team</h1>
+        <nav>
+            <ul>
+                <li><a href="live_crop.html"><i class="fas fa-tag"></i> Market Prices</a></li>
+                <li><a href="weather_prediction.html"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Our Team</a></li>
+                <li><a href="Contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <section id="AboutTeam" class="about-team">
+            <h1>Our Mission & Vision</h1>
+            <p>At AgriZen, we're revolutionizing agriculture through technology. Our team of passionate agri-tech experts, developers, and farming consultants work tirelessly to bridge the gap between traditional farming and modern innovation.</p>
+
+            <div class="team-info">
+                <div class="team-member">
+                    <h2>Our Vision</h2>
+                    <p>To create a digitally empowered farming community where technology enhances every aspect of agriculture, making farming more profitable, sustainable, and accessible to all.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <h2>Our Mission</h2>
+                    <ul>
+                        <li>Democratize access to agricultural technology</li>
+                        <li>Provide real-time, accurate farming data</li>
+                        <li>Reduce costs through shared resources</li>
+                        <li>Increase farmer profitability nationwide</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-highlights">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3>FarmShare</h3>
+                    <p>Community-driven equipment sharing to reduce costs and maximize resource utilization</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun-rain"></i>
+                    </div>
+                    <h3>Weather AI</h3>
+                    <p>Hyper-local weather predictions tailored to your exact farmland location</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Market Intel</h3>
+                    <p>Real-time crop price tracking across multiple markets</p>
+                </div>
+            </div>
+
+            <div class="team-info">
+                <div class="team-member">
+                    <h2>Why Farmers Love Us</h2>
+                    <ul>
+                        <li>30% average increase in crop yields</li>
+                        <li>40% reduction in equipment costs</li>
+                        <li>95% weather prediction accuracy</li>
+                        <li>24/7 multilingual support</li>
+                    </ul>
+                </div>
+
+                <div class="team-member">
+                    <h2>Our Promise</h2>
+                    <p>We commit to continuously improving our platform based on farmer feedback, ensuring AgriZen remains the most trusted agricultural technology partner in India.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 AgriZen | Empowering Farmers Through Technology</p>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        document.addEventListener("DOMContentLoaded", function() {
+            const aboutSection = document.querySelector(".about-team");
+            
+            function checkVisibility() {
+                const sectionTop = aboutSection.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.85) {
+                    aboutSection.classList.add("visible");
+                    window.removeEventListener("scroll", checkVisibility);
+                }
+            }
+            
+            window.addEventListener("scroll", checkVisibility);
+            checkVisibility(); // Check on load
+        });
+
+        // Floating animation for feature cards
+        const featureCards = document.querySelectorAll(".feature-card");
+        featureCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>

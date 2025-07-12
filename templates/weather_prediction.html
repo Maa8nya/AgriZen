@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Advice | AgriZen</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5C832F;
+            --primary-dark: #3A5A20;
+            --secondary: #FFC107;
+            --secondary-dark: #E6B000;
+            --accent: #8B4513;
+            --light: #FFFDE7;
+            --dark: #3E2723;
+            --highlight: #F5F5DC;
+            --text: #333333;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Roboto Slab', serif;
+            color: var(--primary-dark);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--accent);
+            padding: 12px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul li a i {
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .container h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+            margin: 0 auto;
+            display: block;
+        }
+
+        .btn:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 193, 7, 0.4);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        /* Response Area */
+        .response {
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--highlight);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .response h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .response p {
+            margin-bottom: 15px;
+        }
+
+        .response ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .response li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .response li::before {
+            content: '•';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .response strong {
+            color: var(--primary-dark);
+        }
+
+        /* Error Message */
+        .error {
+            color: #d32f2f;
+            font-weight: 500;
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 6px;
+            border-left: 4px solid #d32f2f;
+        }
+
+        /* Loading Indicator */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(92, 131, 47, 0.2);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Google Translate */
+        #google_translate_element {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            background: var(--white);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            .container h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                gap: 10px;
+            }
+            
+            .container {
+                margin: 15px;
+                padding: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Translate Element -->
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en', includedLanguages: 'kn', layout: google.translate.TranslateElement.InlineLayout.SIMPLE },
+                'google_translate_element'
+            );
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li> 
+            <li><a href="about.html"><i class="fas fa-users"></i> About Team</a></li> 
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Get Personalized Agricultural Advice</h1>
+        <button id="getLocationButton" class="btn">
+            <i class="fas fa-map-marker-alt"></i> Get Location-Based Advice
+        </button>
+        
+        <div id="loading" class="loading">
+            <div class="loading-spinner"></div>
+            <p>Analyzing your location...</p>
+        </div>
+        
+        <div id="agricultural-advice" class="response"></div>
+    </div>
+
+    <script>
+        document.getElementById("getLocationButton").addEventListener("click", function() {
+            const adviceDiv = document.getElementById("agricultural-advice");
+            const loadingDiv = document.getElementById("loading");
+            
+            // Clear previous content and show loading
+            adviceDiv.style.display = "none";
+            adviceDiv.innerHTML = "";
+            loadingDiv.style.display = "block";
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        fetchAgriculturalAdvice(lat, lon);
+                    },
+                    function(error) {
+                        loadingDiv.style.display = "none";
+                        let errorMessage = "Unable to retrieve your location.";
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMessage = "Location access was denied. Please enable location services to get personalized advice.";
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMessage = "Your location information is currently unavailable.";
+                                break;
+                            case error.TIMEOUT:
+                                errorMessage = "The request to get your location timed out. Please try again.";
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                errorMessage = "An unknown error occurred while getting your location.";
+                                break;
+                        }
+                        adviceDiv.innerHTML = `<p class="error">${errorMessage}</p>`;
+                        adviceDiv.style.display = "block";
+                        showFallbackAdvice();
+                    }
+                );
+            } else {
+                loadingDiv.style.display = "none";
+                adviceDiv.innerHTML = '<p class="error">Geolocation is not supported by your browser. Using default advice instead.</p>';
+                adviceDiv.style.display = "block";
+                showFallbackAdvice();
+            }
+        });
+
+        function fetchAgriculturalAdvice(lat, lon) {
+            fetch('http://127.0.0.1:3000/get_advice', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ lat: lat, lon: lon }),
+            })
+            .then(response => {
+                if (!response.ok) throw new Error();
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("loading").style.display = "none";
+                const adviceDiv = document.getElementById("agricultural-advice");
+                
+                if (data.advice) {
+                    adviceDiv.innerHTML = `
+                        <h3>Personalized Agricultural Advice</h3>
+                        <p>Based on your location (Latitude: ${lat.toFixed(4)}, Longitude: ${lon.toFixed(4)})</p>
+                        <div>${data.advice}</div>
+                    `;
+                } else {
+                    adviceDiv.innerHTML = '<p class="error">No specific advice found for your location. Showing general advice instead.</p>';
+                    showFallbackAdvice();
+                }
+                adviceDiv.style.display = "block";
+            })
+            .catch(() => {
+                document.getElementById("loading").style.display = "none";
+                showFallbackAdvice();
+            });
+        }
+
+        function showFallbackAdvice() {
+            const adviceDiv = document.getElementById("agricultural-advice");
+            adviceDiv.innerHTML += `
+                <h3>General Agricultural Advice for Karnataka Region</h3>
+                <p>The following advice is based on typical conditions in southern Karnataka, India (near Bangalore coordinates).</p>
+                
+                <h3>Dominant Soil Type:</h3>
+                <p><strong>Red Loam or Red Sandy Loam</strong> - Well-drained soil with moderate fertility.</p>
+                
+                <h3>Recommended Crops:</h3>
+                <ul>
+                    <li><strong>Finger Millet (Ragi):</strong> Highly drought tolerant and nutritious.</li>
+                    <li><strong>Groundnut:</strong> Adaptable to the local climate with good market value.</li>
+                    <li><strong>Horse Gram:</strong> Ideal for dry land cultivation, requires minimal inputs.</li>
+                    <li><strong>Soybean:</strong> Good cash crop but requires proper moisture management.</li>
+                </ul>
+                
+                <h3>Planting Schedule:</h3>
+                <ul>
+                    <li><strong>Finger Millet:</strong> Sow in March–April for June–July harvest</li>
+                    <li><strong>Groundnut:</strong> Plant in February–March for May–June harvest</li>
+                    <li><strong>Horse Gram:</strong> Best sown in February–March for May–June harvest</li>
+                    <li><strong>Soybean:</strong> Optimal planting in late February–early March for May–June harvest</li>
+                </ul>
+                
+                <h3>Key Recommendations:</h3>
+                <ul>
+                    <li><strong>Rainfall Pattern:</strong> Expect monsoons from June–September. Plan irrigation accordingly.</li>
+                    <li><strong>Soil Management:</strong> Conduct soil testing every 2-3 years to optimize fertilizer use.</li>
+                    <li><strong>Pest Control:</strong> Implement Integrated Pest Management (IPM) strategies to reduce chemical use.</li>
+                    <li><strong>Water Conservation:</strong> Consider drip irrigation for water-intensive crops.</li>
+                </ul>
+                
+                <p><strong>Important Note:</strong> For precise recommendations tailored to your specific field conditions, 
+                please consult with your local agricultural extension officer or soil testing laboratory.</p>
+            `;
+            adviceDiv.style.display = "block";
+        }
+    </script>
+</body>
+</html>
