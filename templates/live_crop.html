@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Crop Market Prices | AgriZen</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5C832F;
+            --primary-dark: #3A5A20;
+            --secondary: #FFC107;
+            --secondary-dark: #E6B000;
+            --accent: #8B4513;
+            --light: #FFFDE7;
+            --dark: #3E2723;
+            --highlight: #F5F5DC;
+            --text: #333333;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Roboto Slab', serif;
+            color: var(--primary-dark);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--accent);
+            padding: 12px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul li a i {
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('bg3.jpeg') no-repeat center center;
+            background-size: cover;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Crop Prices Section */
+        .crop-prices {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .crop-prices h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .crop-prices h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .price-table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(92, 131, 47, 0.05);
+        }
+
+        tr:hover {
+            background-color: rgba(255, 193, 7, 0.1);
+        }
+
+        td {
+            font-weight: 500;
+        }
+
+        /* Price Highlight */
+        td:nth-child(2) {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        /* Last Updated */
+        .last-updated {
+            text-align: right;
+            font-style: italic;
+            color: #777;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Google Translate */
+        #google_translate_element {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            background: var(--white);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            th, td {
+                padding: 12px 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+            
+            .hero {
+                height: 250px;
+            }
+            
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            
+            .crop-prices h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Translate Element -->
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en', includedLanguages: 'kn', layout: google.translate.TranslateElement.InlineLayout.SIMPLE },
+                'google_translate_element'
+            );
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Header -->
+    <header>
+        <h1>Live Crop Market Prices</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li> 
+            <li><a href="about.html"><i class="fas fa-users"></i> About Team</a></li> 
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Real-Time Agricultural Prices</h2>
+        <p>Stay updated with the latest market trends and make informed selling decisions</p>
+    </section>
+
+    <!-- Crop Prices Section -->
+    <section class="crop-prices">
+        <h3>Current Market Prices (per quintal)</h3>
+        
+        <div class="price-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Crop</th>
+                        <th>Price (₹)</th>
+                    </tr>
+                </thead>
+                <tbody id="cropTableBody">
+                    <!-- Data will be inserted dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="last-updated">Prices updated every hour</div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 AgriZen | Empowering Farmers with Technology</p>
+    </footer>
+
+    <script>
+        // Hardcoded scraped data from Selenium
+        const cropData = [
+            { crop: "Castor Seed", price: 6369 },
+            { crop: "Castor Seed", price: 6285 },
+            { crop: "Cotton Seed Oilcake", price: 2673 },
+            { crop: "Cotton Seed Oilcake", price: 2700 },
+            { crop: "Cotton Seed Oilcake", price: 2731 },
+            { crop: "Dhaniya", price: 8198 },
+            { crop: "Dhaniya", price: 8280 },
+            { crop: "Guar Gum", price: 10047 },
+            { crop: "Guar Gum", price: 10215 },
+            { crop: "Guar seed", price: 5317 },
+            { crop: "Guar seed", price: 5378 },
+            { crop: "Jeera", price: 21190 },
+            { crop: "Jeera", price: 20600 },
+            { crop: "Kapas", price: 1469 },
+            { crop: "Turmeric (Farmer Polished)", price: 13398 },
+            { crop: "Turmeric (Farmer Polished)", price: 13142 }
+        ];
+
+        // Function to populate the table dynamically
+        function loadCropPrices() {
+            const tableBody = document.getElementById("cropTableBody");
+            tableBody.innerHTML = ''; // Clear any existing rows
+
+            cropData.forEach(({ crop, price }) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${crop}</td>
+                    <td>₹${price.toLocaleString('en-IN')}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Load prices on page load
+        window.onload = loadCropPrices;
+
+        // Simulate periodic updates (every 60 seconds)
+        setInterval(() => {
+            // In a real app, this would fetch new data from your backend
+            console.log("Checking for price updates...");
+            loadCropPrices();
+        }, 60000);
+    </script>
+</body>
+</html>

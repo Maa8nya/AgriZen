@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgriZen - Equipment Sharing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background-color: #5C832F;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      color: #5C832F;
+      border: 2px solid #5C832F;
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background: #5C832F;
+      color: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .intro p {
+      max-width: 600px;
+      margin: 10px auto;
+      color: #555;
+    }
+
+    .add-btn {
+      background: #FFC107;
+      color: #3E2723;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .add-btn:hover {
+      background: #E6B000;
+    }
+
+    .equipment-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .equipment-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: 0.3s;
+    }
+
+    .equipment-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .equipment-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .equipment-card .content {
+      padding: 15px;
+    }
+
+    .equipment-card h3 {
+      font-size: 18px;
+      margin: 0 0 10px;
+      color: #3A5A20;
+    }
+
+    .equipment-card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #5C832F;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background: #FFC107;
+      color: #3E2723;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background: #E6B000;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 20px;
+      }
+
+      .back-btn {
+        font-size: 12px;
+        padding: 5px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <button class="back-btn" onclick="goBack()">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+    <h1>AgriZen - Farm Equipment Sharing</h1>
+  </header>
+
+  <div class="container">
+    <div class="intro">
+      <h2>Find or Rent Equipment Near You</h2>
+      <p>Access farming tools like tractors, harvesters, and irrigation systems from nearby farmers at affordable rates.</p>
+
+      <button class="add-btn" onclick="window.location.href='add-equipment.html'">
+        <i class="fas fa-plus-circle"></i>Add Your Equipment
+      </button>
+    </div>
+
+    <div class="equipment-list">
+      <!-- Equipment Card 1 -->
+      <div class="equipment-card">
+        <img src="john_tractor.png" alt="Tractor">
+        <div class="content">
+          <h3>John Deere 5050D</h3>
+          <p>Owner: Vijay Kumar (5km away)</p>
+          <p>2020 Model · 450 hrs</p>
+          <div class="price">₹800 / day</div>
+          <button class="btn" onclick="alert('Renting functionality coming soon!')">
+            <i class="fas fa-calendar-check"></i> Rent Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Equipment Card 2 -->
+      <div class="equipment-card">
+        <img src="harvester.png" alt="Harvester">
+        <div class="content">
+          <h3>Kubota Rice Harvester</h3>
+          <p>Owner: Ramesh Patel (8km away)</p>
+          <p>2019 Model · 320 hrs</p>
+          <div class="price">₹1500 / day</div>
+          <button class="btn" onclick="alert('Renting functionality coming soon!')">
+            <i class="fas fa-calendar-check"></i> Rent Now
+          </button>
+        </div>
+      </div>
+
+            <!-- Equipment Card 3 -->
+      <div class="equipment-card">
+        <img src="rotavator.png" alt="Rotavator">
+        <div class="content">
+          <h3>FieldKing Rotavator</h3>
+          <p>Owner: Anand Singh (3km away)</p>
+          <p>2021 Model · 120 hrs</p>
+          <div class="price">₹400 / day</div>
+          <button class="btn" onclick="alert('Renting functionality coming soon!')">
+            <i class="fas fa-calendar-check"></i> Rent Now
+          </button>
+        </div>
+      </div>
+
+            <!-- Equipment Card 4-->
+      <div class="equipment-card">
+        <img src="sprinkler.png" alt="Sprinkler">
+        <div class="content">
+          <h3>Automatic Irrigation System</h3>
+          <p>Owner: Priya Sharma (6km away)</p>
+          <p> 2022 Model · 50 hrs</p>
+          <div class="price">₹300 / day</div>
+          <button class="btn" onclick="alert('Renting functionality coming soon!')">
+            <i class="fas fa-calendar-check"></i> Rent Now
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function addEquipment() {
+      // Redirect to add equipment page or show a modal
+      alert("Redirecting to Add Equipment form...");
+      // Example: window.location.href = "add-equipment.html";
+    }
+  </script>
+
+</body>
+</html>

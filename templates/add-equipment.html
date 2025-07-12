@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Equipment - AgriZen</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background-color: #5C832F;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      color: #5C832F;
+      border: 2px solid #5C832F;
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background: #5C832F;
+      color: white;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #3A5A20;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .btn {
+      background: #FFC107;
+      color: #3E2723;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background: #E6B000;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 20px;
+      }
+
+      .back-btn {
+        font-size: 12px;
+        padding: 5px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <button class="back-btn" onclick="goBack()">
+      <i class="fas fa-arrow-left"></i> Back
+    </button>
+    <h1>Add Your Equipment</h1>
+  </header>
+
+  <div class="container">
+    <h2>Equipment Details</h2>
+    <form onsubmit="submitForm(event)">
+      <label for="name">Equipment Name</label>
+      <input type="text" id="name" required>
+
+      <label for="type">Type</label>
+      <select id="type" required>
+        <option value="">Select Type</option>
+        <option>Tractor</option>
+        <option>Harvester</option>
+        <option>Irrigation</option>
+        <option>Plow</option>
+        <option>Sprayer</option>
+        <option>Other</option>
+      </select>
+
+      <label for="model">Model Year</label>
+      <input type="number" id="model" min="1990" max="2025" required>
+
+      <label for="hours">Usage Hours</label>
+      <input type="number" id="hours" min="0" required>
+
+      <label for="price">Rental Price (₹ / day)</label>
+      <input type="number" id="price" min="0" required>
+
+      <label for="distance">Distance (in km)</label>
+      <input type="number" id="distance" min="0" required>
+
+      <label for="image">Upload Image</label>
+      <input type="file" id="image" accept="image/*" required>
+
+      <button type="submit" class="btn">
+        <i class="fas fa-plus-circle"></i> Submit Equipment
+      </button>
+    </form>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function submitForm(event) {
+      event.preventDefault();
+      // You can handle form data here or send to a server
+      alert("Equipment added successfully!");
+      // Optional redirect: window.location.href = "equipment.html";
+    }
+  </script>
+
+</body>
+</html>
