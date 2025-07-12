@@ -15,13 +15,6 @@ A farmer-centric web application designed to bridge the technology gap in rural 
 | 🔄 FarmShare | Equipment rental marketplace for farmers | Flask, SQLite |
 | 🌐 Multilingual | Kannada/English support for regional accessibility | Google Translate API |
 
-## 🖥️ Screenshots
-
-<div align="center">
-  <img src="screenshots/homepage.png" width="30%" alt="Homepage">
-  <img src="screenshots/market-prices.png" width="30%" alt="Market Prices"> 
-  <img src="screenshots/weather.png" width="30%" alt="Weather Forecast">
-</div>
 
 ## 🛠️ Tech Stack
 
