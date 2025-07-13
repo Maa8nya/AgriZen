@@ -30,8 +30,8 @@ A farmer-centric web application designed to bridge the technology gap in rural 
 
 **APIs & Services:**
 - OpenWeatherMap API
-- Google Translate API
-- Agricultural Market Data APIs
+- Google Translate APIgit status
+- Agricultural Market Data APIs.
 
 ## 🚀 Getting Started
 
